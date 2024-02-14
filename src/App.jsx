@@ -9,6 +9,7 @@ import ReposList from "./components/ReposLista";
 function App() {
 
   const [fomularioIsOpen, setFormularioIsOpen] = useState(true);
+  const [nomeUsuario, setNomeUsuario] = useState('');
 
 
   function handleForm(){
@@ -17,8 +18,14 @@ function App() {
 
   return (
    <>
-   <Perfil nome='Erick Gomes' endereco='http://github.com/zingrad.png'/>
-    <ReposList />
+   <input type="text" onBlur={(e) => setNomeUsuario(e.target.value)}/>
+
+    {nomeUsuario.length > 4 && (
+      <>
+         <Perfil nomeUsuario={nomeUsuario}/>
+      <ReposList nomeUsuario={nomeUsuario}/>
+      </>
+    )}
   {/* {fomularioIsOpen &&(
      <Formulario />
   )}
